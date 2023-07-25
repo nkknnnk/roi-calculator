@@ -6,16 +6,31 @@ import { LiaAngleDownSolid, LiaAngleRightSolid } from "react-icons/lia";
 const Roi = ({ setShowCalculator }) => {
   const [showDetails, setshowDetails] = useState(false);
   const [input, setInput] = useState({ cake: 0, usd: 0 });
+  const roiforTimeFrame = {day1: "63.34", day7: "33.12", day30: "23.56", year1: "17.83", year5: "14.67"}
+  const [chooseRoi, setchooseRoi] = useState(roiforTimeFrame.day1)
   const onChange = (e) => {
     setInput({ ...input, [e.target.name]: `${e.target.value}` });
   };
   const activebtn = (clases, id) => {
+    if(id==="active4"){
+        setchooseRoi(roiforTimeFrame.day1)
+
+    }else if(id==="active5"){
+        setchooseRoi(roiforTimeFrame.day7)
+    }else if(id==="active6"){
+        setchooseRoi(roiforTimeFrame.day30)
+    }else if(id==="active7"){
+        setchooseRoi(roiforTimeFrame.year1)
+    }else if(id==="active8"){
+        setchooseRoi(roiforTimeFrame.year5)
+    }
     document.querySelectorAll(clases).forEach((e) => {
       e.classList.remove("active");
     });
-    console.log(document.querySelectorAll(clases));
     document.getElementById(id).classList.add("active");
+
   };
+  console.log(chooseRoi)
   return ReactDOM.createPortal(
     <div className="modal">
       <div className="modal-body">
@@ -23,7 +38,7 @@ const Roi = ({ setShowCalculator }) => {
           className="flex justify-between items-center flex-row w-full relative"
           style={{ marginTop: "-17px" }}
         >
-          <h2>Calculator</h2>
+          <h2>ROI Calculator</h2>
           <button
             className="text-xl font-bold uppercase text-red-600 absolute right-0 top-1"
             onClick={() => setShowCalculator(false)}
@@ -32,7 +47,7 @@ const Roi = ({ setShowCalculator }) => {
           </button>
         </div>
         <div className="flex justify-end">
-          <div className="text-bold text-slate-500">
+          <div className="text-bold text-slate-500 mb-4">
             <span className="mx-3">Cake</span>
             <input
               className="mr-2 mt-[0.3rem] h-3.5 w-8 appearance-none rounded-[0.4375rem] bg-yellow-500 before:pointer-events-none before:absolute before:h-3.5 before:w-3.5 before:rounded-full before:bg-transparent before:content-[''] after:absolute after:z-[2] after:-mt-[0.1875rem] after:h-5 after:w-5 after:rounded-full after:border-none after:bg-neutral-100 after:shadow-[0_0px_3px_0_rgb(0_0_0_/_7%),_0_2px_2px_0_rgb(0_0_0_/_4%)] after:transition-[background-color_0.2s,transform_0.2s] after:content-[''] checked:bg-neutral-300 checked:after:absolute checked:after:z-[2] checked:after:-mt-[3px] checked:after:ml-[1.0625rem] checked:after:h-5 checked:after:w-5  checked:after:border-none checked:after:bg-yellow-100 hover:cursor-pointer focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[3px_-1px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1]  focus:after:content-[''] checked:focus:border-yellow-600 checked:focus:bg-primary checked:focus:before:ml-[1.0625rem] checked:focus:before:scale-100  dark:bg-yellow-600 dark:after:bg-neutral-400 dark:checked:bg-yellow-100 dark:checked:after:bg-yellow-500 dark:focus:before:shadow-[3px_-1px_0px_13px_rgba(255,255,255,0.4)]"
@@ -44,11 +59,12 @@ const Roi = ({ setShowCalculator }) => {
           </div>
         </div>
         <div className="flex flex-col justify-center ">
-          <div className="w-full">
+          <div className=" flex w-full relative">
+            <span className="text-black text-xl font-extrabold absolute top-3 right-2">CAKE</span>
             <input
               type="text"
               name="cake"
-              className="appearance-none block w-full bg-gray-100  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-right text-black text-xl font-extrabold"
+              className="appearance-none block w-full bg-gray-100  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-right text-black text-xl font-extrabold pr-16"
               value={input.cake}
               onChange={onChange}
             />
@@ -58,21 +74,24 @@ const Roi = ({ setShowCalculator }) => {
               <span
                 id="active1"
                 className="isrmvactive1 active cursor-pointer uppercase text-sm font-bold p-2 m-2 ml-0 bg-slate-100 rounded-md"
-                onClick={() => activebtn(".isrmvactive1", "active1")}
+                onClick={() => {activebtn(".isrmvactive1", "active1"); setInput({...input
+                    , usd: 0})}}
               >
                 use balance
               </span>
               <span
                 id="active2"
                 className="isrmvactive1 cursor-pointer  p-2 m-2 bg-slate-100 rounded-md"
-                onClick={() => activebtn(".isrmvactive1", "active2")}
+                onClick={() => {activebtn(".isrmvactive1", "active2"); setInput({...input
+                    , usd: 1000})}}
               >
                 $1000
               </span>
               <span
                 id="active3"
                 className="isrmvactive1 cursor-pointer  p-2 m-2 bg-slate-100 rounded-md"
-                onClick={() => activebtn(".isrmvactive1", "active3")}
+                onClick={() => {activebtn(".isrmvactive1", "active3"); setInput({...input
+                , usd: 100})}}
               >
                 $100
               </span>
@@ -122,7 +141,7 @@ const Roi = ({ setShowCalculator }) => {
         </div>
         <div className="flex justify-between">
           <div className="text-black font-bold">Enable Accelerated APY</div>
-          <div className="inline-flex items-center">
+          <div className="inline-flex items-center mr-4">
             <div className="relative inline-block h-4 w-8 cursor-pointer rounded-full">
               <input
                 id="switch-component"
@@ -188,13 +207,14 @@ const Roi = ({ setShowCalculator }) => {
             </span>
           </div>
           <div className="w-full relative">
-            <div className="absolute top-3 left-4">
+            <div className="absolute top-4 left-4">
               <PiPencilSimpleLight className="text-2xl text-slate-400" />
             </div>
+            <span className="text-black text-2xl font-extrabold absolute top-3 right-2">USD</span>
             <input
               type="text"
               name="usd"
-              className="pl-64 appearance-none block w-full bg-gray-100 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-right text-black text-2xl font-extrabold"
+              className="pl-64 appearance-none block w-full bg-gray-100 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-right text-black text-2xl font-extrabold pr-16"
               value={input.usd}
               onChange={onChange}
             />
@@ -225,7 +245,7 @@ const Roi = ({ setShowCalculator }) => {
           <div className="flex flex-col w-full">
             <div className="flex w-full justify-between">
               <span className="text-black font-bold">APY</span>
-              <span className="text-yellow-400 font-bold text-2xl">63.65%</span>
+              <span className="text-yellow-400 font-bold text-2xl">{chooseRoi}%</span>
             </div>
             <div>
               <ul>

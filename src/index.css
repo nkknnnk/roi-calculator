@@ -46,7 +46,7 @@ code {
   align-items: center;
   padding: 15px;
   overflow: hidden;
-  overflow-y: auto;
+  overflow-y: hidden;
   z-index: 10000;
   background: rgba(0, 0, 0, 0.15);
 }
@@ -76,8 +76,8 @@ code {
   /* height: 100%; */
   height: auto;
   max-width: 29vw;
-  max-height: 80vh;
-  min-height: 80vh;
+  max-height: 85vh;
+  min-height: 78vh;
   padding: 15px;
   background: #FFFFFF;
   -webkit-box-shadow: 5px 4px 13px rgba(0, 0, 0, 0.18);
@@ -241,5 +241,77 @@ code {
 
 
 .active{
-  background-color: #C8A366;
+  background-color: #f1c680;
+}
+
+
+
+
+@media screen and (max-width: 1680px) {
+  .modal .modal-body {
+    background: #fff;
+    width: 85vw;
+    /* height: 100%; */
+    height: auto;
+    max-width: 80vw;
+    max-height: 96vh;
+    min-height: 95vh;
+    padding: 15px;
+    background: #FFFFFF;
+    -webkit-box-shadow: 5px 4px 13px rgba(0, 0, 0, 0.18);
+    box-shadow: 5px 4px 13px rgba(0, 0, 0, 0.18);
+    border-radius: 6px;
+    overflow-y: hidden;
+  }
+}
+@media screen and (max-width: 1280px) {
+  .modal .modal-body {
+    background: #fff;
+    width: 90vw;
+    /* height: 100%; */
+    height: auto;
+    max-width: 90vw;
+    max-height: 96vh;
+    min-height: 95vh;
+    padding: 15px;
+    background: #FFFFFF;
+    -webkit-box-shadow: 5px 4px 13px rgba(0, 0, 0, 0.18);
+    box-shadow: 5px 4px 13px rgba(0, 0, 0, 0.18);
+    border-radius: 6px;
+    overflow-y: hidden;
+  }
+}
+@media screen and (max-width: 980px) {
+  .modal .modal-body {
+    background: #fff;
+    width: 97vw;
+    /* height: 100%; */
+    height: auto;
+    max-width: 98vw;
+    max-height: 98vh;
+    min-height: 95vh;
+    padding: 15px;
+    background: #FFFFFF;
+    -webkit-box-shadow: 5px 4px 13px rgba(0, 0, 0, 0.18);
+    box-shadow: 5px 4px 13px rgba(0, 0, 0, 0.18);
+    border-radius: 6px;
+    overflow-y: hidden;
+  }
+}
+@media screen and (max-width: 680px) {
+  .modal .modal-body {
+    background: #fff;
+    width: 97vw;
+    /* height: 100%; */
+    height: auto;
+    max-width: 98vw;
+    max-height: 98vh;
+    min-height: 95vh;
+    padding: 15px;
+    background: #FFFFFF;
+    -webkit-box-shadow: 5px 4px 13px rgba(0, 0, 0, 0.18);
+    box-shadow: 5px 4px 13px rgba(0, 0, 0, 0.18);
+    border-radius: 6px;
+    overflow-y: hidden;
+  }
 }
