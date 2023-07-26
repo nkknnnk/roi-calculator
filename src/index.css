@@ -264,10 +264,10 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 @media screen and (max-width: 1280px) {
   .modal .modal-body {
-    width: 90vw;
+    width: 50vw;
     /* height: 100%; */
     height: auto;
-    max-width: 90vw;
+    max-width: 50vw;
     max-height: 96vh;
     min-height: 95vh;
 

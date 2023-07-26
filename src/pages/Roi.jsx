@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { PiPencilSimpleLight } from "react-icons/pi";
 import { BsCheck2 } from "react-icons/bs";
+import { RxCross1 } from "react-icons/rx";
 import { LiaAngleDownSolid, LiaAngleRightSolid } from "react-icons/lia";
 
 const Roi = ({ setShowCalculator }) => {
@@ -95,10 +96,10 @@ const Roi = ({ setShowCalculator }) => {
         >
           <h2>ROI Calculator</h2>
           <button
-            className="text-xl font-bold uppercase text-red-600 absolute right-0 top-1"
+            className="text-xl font-bold uppercase text-slate-600 absolute right-0 top-3"
             onClick={() => setShowCalculator(false)}
           >
-            X
+            <RxCross1 />
           </button>
         </div>
         <div className="flex justify-end">
