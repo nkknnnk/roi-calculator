@@ -15,30 +15,30 @@ const Roi = ({ setShowCalculator }) => {
     year5: "14.67",
   };
   const [chooseRoi, setchooseRoi] = useState(roiforTimeFrame.day1);
-  const [roiArg, setRoiArg] = useState({investment: 0, apy: 63.34, timeframe: 1})
+  const [roiArg, setRoiArg] = useState({
+    investment: 0,
+    apy: 63.34,
+    timeframe: 1,
+  });
   const onChange = (e) => {
     setInput({ ...input, [e.target.name]: `${e.target.value}` });
   };
   const activebtn = (clases, id) => {
     if (id === "active4") {
       setchooseRoi(roiforTimeFrame.day1);
-      setRoiArg({...roiArg, apy: 63.34, timeframe: 1})
+      setRoiArg({ ...roiArg, apy: 63.34, timeframe: 1 });
     } else if (id === "active5") {
       setchooseRoi(roiforTimeFrame.day7);
-      setRoiArg({...roiArg, apy: 33.12, timeframe: 7})
-
+      setRoiArg({ ...roiArg, apy: 33.12, timeframe: 7 });
     } else if (id === "active6") {
       setchooseRoi(roiforTimeFrame.day30);
-      setRoiArg({...roiArg, apy: 23.56, timeframe: 30})
-
+      setRoiArg({ ...roiArg, apy: 23.56, timeframe: 30 });
     } else if (id === "active7") {
       setchooseRoi(roiforTimeFrame.year1);
-      setRoiArg({...roiArg, apy: 17.83, timeframe: "1year"})
-
+      setRoiArg({ ...roiArg, apy: 17.83, timeframe: "1year" });
     } else if (id === "active8") {
       setchooseRoi(roiforTimeFrame.year5);
-      setRoiArg({...roiArg, apy: 14.67, timeframe: "5year"})
-
+      setRoiArg({ ...roiArg, apy: 14.67, timeframe: "5year" });
     }
     document.querySelectorAll(clases).forEach((e) => {
       e.classList.remove("active");
@@ -49,28 +49,39 @@ const Roi = ({ setShowCalculator }) => {
   const [estimate, setEstimate] = useState({ cake: 0, usd: 0 });
 
   useEffect(() => {
-    setEstimate({ ...estimate, usd: +input.cake * 2, cake: input.usd / 2 });
+    const updateEstimate = (estimate, input) => {
+      return {
+        ...estimate,
+        usd: +input.cake * 2,
+        cake: input.usd / 2,
+      };
+    };
+
+    setEstimate((e) => updateEstimate(e, input));
     // setRoiArg({...roiArg, investment: +input.usd})
-    calculateProfit(+input.usd, roiArg.apy, roiArg.timeframe)
+    calculateProfit(+input.usd, roiArg.apy, roiArg.timeframe);
+    // eslint-disable-next-line
   }, [input]);
+
+  // calculateProfit(+input.usd, roiArg.apy, roiArg.timeframe);
 
   function calculateProfit(investment, apy, timeframe) {
     if (timeframe > 0 && timeframe < 366) {
       let profitbytimeFram = 365 / timeframe;
       // Calculate the profit.
-      let profit = ((investment * apy) / 100) / profitbytimeFram;
+      let profit = (investment * apy) / 100 / profitbytimeFram;
 
       // Return the profit.
-      setInput({...input, cake: (profit/2).toFixed(4)})
+      setInput({ ...input, cake: (profit / 2).toFixed(4) });
     } else {
       // Calculate the profit.
-      let profit = ((investment * apy) / 100) * +(timeframe[0]);
+      let profit = ((investment * apy) / 100) * +timeframe[0];
 
-      setInput({...input, cake: (profit/2).toFixed(4)})
+      setInput({ ...input, cake: (profit / 2).toFixed(4) });
     }
   }
 
-  const [isPencilIcon, setIsPencilIcon] = useState(true)
+  const [isPencilIcon, setIsPencilIcon] = useState(true);
 
   const onFocus = () => setIsPencilIcon(false);
   const onBlur = () => setIsPencilIcon(true);
@@ -261,7 +272,11 @@ const Roi = ({ setShowCalculator }) => {
           </div>
           <div className="w-full relative">
             <div className="absolute top-4 left-4">
-              {isPencilIcon?<PiPencilSimpleLight className="text-2xl text-slate-400" />:<BsCheck2 className="text-2xl text-slate-400"/>}
+              {isPencilIcon ? (
+                <PiPencilSimpleLight className="text-2xl text-slate-400" />
+              ) : (
+                <BsCheck2 className="text-2xl text-slate-400" />
+              )}
             </div>
             <span className="text-black text-2xl font-extrabold absolute top-3 right-2">
               USD
@@ -286,7 +301,10 @@ const Roi = ({ setShowCalculator }) => {
           <button className="pt-3 pb-3 pr-20 pl-20 rounded-lg bg-gray-800 text-white">
             Apply
           </button>
-          <button className="pt-3 pb-3 pr-20 pl-20 rounded-lg bg-slate-100 text-gray-800 border-gray-800 border-2" onClick={()=>setInput({ cake: 0, usd: 0 })}>
+          <button
+            className="pt-3 pb-3 pr-20 pl-20 rounded-lg bg-slate-100 text-gray-800 border-gray-800 border-2"
+            onClick={() => setInput({ cake: 0, usd: 0 })}
+          >
             Cancel
           </button>
         </div>
@@ -308,7 +326,7 @@ const Roi = ({ setShowCalculator }) => {
                 {chooseRoi}%
               </span>
             </div>
-            <div> 
+            <div>
               <ul>
                 <li>Calculated based on current rates</li>
                 <li>
