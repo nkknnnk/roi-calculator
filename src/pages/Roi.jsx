@@ -308,7 +308,7 @@ const Roi = ({ setShowCalculator }) => {
                 {chooseRoi}%
               </span>
             </div>
-            <div>
+            <div> 
               <ul>
                 <li>Calculated based on current rates</li>
                 <li>
