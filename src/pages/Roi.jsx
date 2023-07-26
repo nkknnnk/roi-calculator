@@ -50,20 +50,15 @@ const Roi = ({ setShowCalculator }) => {
   const [estimate, setEstimate] = useState({ cake: 0, usd: 0 });
 
   useEffect(() => {
-    // const updateEstimate = (estimate, input) => {
-    //   return {
-    //     ...estimate,
-    //     usd: +input.cake * 2,
-    //     cake: input.usd / 2,
-    //   };
-    // };
-
     setEstimate({
       ...estimate,
       usd: +input.cake * 2,
       cake: input.usd / 2,
     });
-    // setRoiArg({...roiArg, investment: +input.usd})
+    // eslint-disable-next-line
+  }, [input]);
+  useEffect(() => {
+
     calculateProfit(+input.usd, roiArg.apy, roiArg.timeframe);
     // eslint-disable-next-line
   }, [input.usd, roiArg]);
