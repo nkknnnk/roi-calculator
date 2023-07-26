@@ -50,19 +50,23 @@ const Roi = ({ setShowCalculator }) => {
   const [estimate, setEstimate] = useState({ cake: 0, usd: 0 });
 
   useEffect(() => {
-    const updateEstimate = (estimate, input) => {
-      return {
-        ...estimate,
-        usd: +input.cake * 2,
-        cake: input.usd / 2,
-      };
-    };
+    // const updateEstimate = (estimate, input) => {
+    //   return {
+    //     ...estimate,
+    //     usd: +input.cake * 2,
+    //     cake: input.usd / 2,
+    //   };
+    // };
 
-    setEstimate((e) => updateEstimate(e, input));
+    setEstimate({
+      ...estimate,
+      usd: +input.cake * 2,
+      cake: input.usd / 2,
+    });
     // setRoiArg({...roiArg, investment: +input.usd})
     calculateProfit(+input.usd, roiArg.apy, roiArg.timeframe);
     // eslint-disable-next-line
-  }, [input]);
+  }, [input.usd, roiArg]);
 
   // calculateProfit(+input.usd, roiArg.apy, roiArg.timeframe);
 
@@ -106,12 +110,22 @@ const Roi = ({ setShowCalculator }) => {
           <div className=" flex text-bold text-slate-500 mb-4">
             <img src="https://ih1.redbubble.net/image.2331639090.7433/st,small,507x507-pad,600x600,f8f8f8.jpg" width={20} height={20} alt="" />
             <span className="mx-3">Cake</span>
-            <input
-              className="mr-2 mt-[0.3rem] h-3.5 w-8 appearance-none rounded-[0.4375rem] bg-yellow-500 before:pointer-events-none before:absolute before:h-3.5 before:w-3.5 before:rounded-full before:bg-transparent before:content-[''] after:absolute after:z-[2] after:-mt-[0.1875rem] after:h-5 after:w-5 after:rounded-full after:border-none after:bg-neutral-100 after:shadow-[0_0px_3px_0_rgb(0_0_0_/_7%),_0_2px_2px_0_rgb(0_0_0_/_4%)] after:transition-[background-color_0.2s,transform_0.2s] after:content-[''] checked:bg-neutral-300 checked:after:absolute checked:after:z-[2] checked:after:-mt-[3px] checked:after:ml-[1.0625rem] checked:after:h-5 checked:after:w-5  checked:after:border-none checked:after:bg-yellow-100 hover:cursor-pointer focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[3px_-1px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1]  focus:after:content-[''] checked:focus:border-yellow-600 checked:focus:bg-primary checked:focus:before:ml-[1.0625rem] checked:focus:before:scale-100  dark:bg-yellow-600 dark:after:bg-neutral-400 dark:checked:bg-yellow-100 dark:checked:after:bg-yellow-500 dark:focus:before:shadow-[3px_-1px_0px_13px_rgba(255,255,255,0.4)]"
-              type="checkbox"
-              role="switch"
-              id="flexSwitchCheckDefault"
-            />
+            <div className="relative mt-1 mr-3 inline-block h-4 w-8 cursor-pointer rounded-full">
+              <input
+                id="switch-component1"
+                type="checkbox"
+                className="peer absolute h-4 w-8 cursor-pointer appearance-none bg-yellow-400 rounded-full bg-blue-gray-100 transition-colors duration-300 checked:bg-pink-500 peer-checked:border-pink-500 peer-checked:before:bg-pink-500"
+              />
+              <label
+                for="switch-component1"
+                className="before:content[''] absolute top-2/4 -left-1 h-5 w-5 -translate-y-2/4 cursor-pointer rounded-full border border-gray-100 bg-slate-100 shadow-md transition-all duration-300 before:absolute before:top-2/4 before:left-2/4 before:block before:h-10 before:w-10 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity hover:before:opacity-10 peer-checked:translate-x-full peer-checked:border-pink-500 peer-checked:before:bg-pink-500"
+              >
+                <div
+                  className="top-2/4 left-2/4 inline-block -translate-x-2/4 -translate-y-2/4 rounded-full p-5"
+                  data-ripple-dark="true"
+                ></div>
+              </label>
+            </div>
             <span>USD</span>
           </div>
         </div>
