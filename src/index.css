@@ -266,6 +266,14 @@ input[type="number"]::-webkit-inner-spin-button {
   border: 3px solid #FFFFFF;
 }
 
+.input-box:focus {
+  border-width: 2px;
+  border-color: #f1c680 !important;
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(var(--brown-rgb), 0.3);
+  box-shadow: 0 0 0 0.25rem rgba(var(--brown-rgb), 0.3);
+  outline: none;
+}
+
 
 @media screen and (max-width: 1680px) {
   .modal .modal-body {

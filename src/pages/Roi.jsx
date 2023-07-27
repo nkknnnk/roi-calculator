@@ -63,7 +63,6 @@ const Roi = ({ setShowCalculator }) => {
     // eslint-disable-next-line
   }, [input.usd, roiArg]);
 
-  // calculateProfit(+input.usd, roiArg.apy, roiArg.timeframe);
 
   function calculateProfit(investment, apy, timeframe) {
     if (timeframe > 0 && timeframe < 366) {
@@ -295,7 +294,7 @@ const Roi = ({ setShowCalculator }) => {
             <input
               type="number"
               name="usd"
-              className="pl-64 appearance-none block w-full bg-gray-100 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-right text-black text-2xl font-extrabold pr-16"
+              className="input-box pl-64 appearance-none block w-full bg-gray-100 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-right text-black text-2xl font-extrabold pr-16"
               value={input.usd}
               onChange={onChange}
               onBlur={onBlur}
